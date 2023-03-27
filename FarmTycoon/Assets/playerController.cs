@@ -9,8 +9,10 @@ public class playerController : MonoBehaviour, Controls.IPlayerActions{
 
     Vector3 direction;
     public float speed = 1;
+    public float reachRadius;
 
     Rigidbody rb;
+    public bool isInventoryOpen = false;
 
     private void Start() {
         rb = this.GetComponent<Rigidbody>();
@@ -32,5 +34,10 @@ public class playerController : MonoBehaviour, Controls.IPlayerActions{
         Matrix4x4 isoMatrix = Matrix4x4.Rotate(rotation);
         Vector3 result = isoMatrix.MultiplyPoint3x4(vector);
         return result;
+    }
+
+    public void OnOpenInv(InputAction.CallbackContext context) {
+        isInventoryOpen = !isInventoryOpen;
+        Debug.Log(isInventoryOpen);
     }
 }
